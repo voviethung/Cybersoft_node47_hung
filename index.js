@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import express, { response } from 'express';
 import connect from './db.js';
+=======
+import express from 'express';
+>>>>>>> d245ae848d3ea82612e6afb38c279e0b58a1e851
 
 // tao object tong cua express
 const app = express();
@@ -35,6 +39,7 @@ app.post("/create-user", (req, res) => {
     res.send(body);
  })
 
+<<<<<<< HEAD
  app.get("/get-user-db", async (req, res) =>{
     const [data] = await connect.query(`
         SELECT * from users
@@ -52,6 +57,8 @@ app.post("/create-user", (req, res) => {
     const [data] = await connect.execute(query, [full_name, email, pass_word])
             return res.send(data);
  })
+=======
+>>>>>>> d245ae848d3ea82612e6afb38c279e0b58a1e851
 
 // define port cho backend, range port cua localhost trong pham vi tu 0 den 65535 (tra cuu range port cua localhost tren chatGPT)
 app.listen(8080, () => {

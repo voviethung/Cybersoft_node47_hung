@@ -1,5 +1,7 @@
 // tao object de ket noi toi database
 import mysql from 'mysql2/promise';
+
+<<<<<<< HEAD
 import dotenv from 'dotenv';
 
 // load bien moi truong
@@ -14,3 +16,15 @@ const connect = mysql.createPool({
 });
 
 export default connect
+=======
+
+const connect = mysql.createPool({
+    host: "localhost",
+    user:"root",
+    password: "123456",
+    
+
+
+
+})
+>>>>>>> d245ae848d3ea82612e6afb38c279e0b58a1e851
