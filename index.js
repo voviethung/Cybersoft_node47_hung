@@ -1,4 +1,5 @@
-import express from 'express';
+import express, { response } from 'express';
+import connect from './db.js';
 
 // tao object tong cua express
 const app = express();
@@ -34,6 +35,23 @@ app.post("/create-user", (req, res) => {
     res.send(body);
  })
 
+ app.get("/get-user-db", async (req, res) =>{
+    const [data] = await connect.query(`
+        SELECT * from users
+        `)
+        res.send(data);
+ })
+ app.post("/create-user-db", async (req, res) =>{
+    const query =`
+    INSERT INTO users(full_name, email, pass_word) VALUES
+    (?, ?, ?)
+    `;
+    // Them 3 dau hoi de tranh bi hack injection SQL
+    let body = req.body;
+    let {full_name, email, pass_word} = body;
+    const [data] = await connect.execute(query, [full_name, email, pass_word])
+            return res.send(data);
+ })
 
 // define port cho backend, range port cua localhost trong pham vi tu 0 den 65535 (tra cuu range port cua localhost tren chatGPT)
 app.listen(8080, () => {
